@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import CardUser from '../components/CardUser/CardUser';
-import axios from 'axios';
+import DetailUser from '../components/DetailUser/DetailUser';
 import { useParams } from 'react-router-dom';
+import { db } from '../firebase/firebaseConfig';
+import { doc, getDoc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
-    const [user, setUser] = useState ({});
-
-    let {id} = useParams();
-
-    useEffect (() => {
-        axios(`https://jsonplaceholder.typicode.com/users/${id}`).then((res) => 
-        setUser(res.data))
-    }, []);
-
+    const [snowboards, setSnowboards] = useState({});
+    let { id } = useParams();
+    useEffect(() => {
+        const getSnowboards = async() => {
+            const snowboardsRef = doc(db, "Snowboard", id);
+            const snowboardsDoc = await getDoc(snowboardsRef);
+            if (snowboardsDoc.exists()) {
+                setSnowboards(snowboardsDoc.data());
+            } else {
+                console.log("No existe el documento");
+            }
+        };
+        getSnowboards();
+    },[id]);
     return (
-        <div>
-            <CardUser data={user}/>
+        <div className=''>
+            <div key={snowboards.id}>
+                <DetailUser data={snowboards}/>
+            </div>
         </div>
     )
 }

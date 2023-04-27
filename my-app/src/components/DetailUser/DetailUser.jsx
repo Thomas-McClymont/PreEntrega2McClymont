@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-const CardUser = ({data}) => {
+const DetailUser = ({data}) => {
     return (
         <Card sx={{ maxWidth: 400 }}>
         <CardActionArea>
@@ -37,4 +37,4 @@ const CardUser = ({data}) => {
     )
 }
 
-export default CardUser;
+export default DetailUser;
