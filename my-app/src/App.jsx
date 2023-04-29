@@ -17,6 +17,7 @@ import ItemDetailContainer from './pages/ItemDetailContainer';
 //COMPONENTS
 import NavBar from "./components/NavBar/NavBar"; 
 //import { useEffect, useState } from 'react';
+import Carrito from "./components/Carrito/Carrito";
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/item/:id" element={<ItemDetailContainer />} />  
+          <Route path="/carrito" element={<Carrito />} />
         </Routes>
       </div>
     </Router>
